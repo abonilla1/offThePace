@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Jockeys on your Roster</h1>
+
+{% for jockey in horse_list %}
+  <a href="{% url 'jockey_detail' jockey.id %}">
+    <div>
+        <div>
+            <span>{{ jockey.name }}</span>
+            <p></p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

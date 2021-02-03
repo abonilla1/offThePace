@@ -10,8 +10,11 @@ from .models import Horse, Jockey, Outcome
 def home(request):
     return render(request, 'home.html')
 
-class HorseList( ListView):
+class HorseList(ListView):
     model = Horse
+
+class JockeyList(ListView):
+    model = Jockey
 
 class HorseCreate(CreateView):
     model = Horse
@@ -20,6 +23,10 @@ class HorseCreate(CreateView):
     # def form_valid(self, form):
     #     form.instance.user = self.request.user
     #     return super().form_valid(form)    
+
+class JockeyCreate(CreateView):
+    model = Jockey
+    fields = '__all__'
 
 def signup(request):
   error_message = ''

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Horses in your Stable</h1>
+
+{% for horse in horse_list %}
+  <a href="{% url 'horse_detail' horse.id %}">
+    <div>
+        <div>
+            <span>{{ horse.name }}</span>
+            <p></p>
+        </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}

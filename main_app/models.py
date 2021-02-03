@@ -40,6 +40,7 @@ class Jockey(models.Model):
     name = models.CharField(max_length=150)
     starts = models.IntegerField()
     age = models.IntegerField()
+    bio = models.TextField(max_length=500, default='')
     
     def __str__(self):
         return self.name
