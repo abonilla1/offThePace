@@ -41,6 +41,7 @@ class Jockey(models.Model):
     starts = models.IntegerField()
     age = models.IntegerField()
     bio = models.TextField(max_length=500, default='')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name
@@ -62,6 +63,7 @@ class Horse(models.Model):
     description = models.TextField(max_length=250)
     trainer = models.CharField(max_length=150)
     jockeys = models.ManyToManyField(Jockey)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

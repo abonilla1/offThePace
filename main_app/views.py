@@ -4,6 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from .models import Horse, Jockey, Outcome
+from .forms import OutcomeForm
 
 # Create your views here.
 
@@ -19,14 +20,27 @@ class JockeyList(ListView):
 class HorseCreate(CreateView):
     model = Horse
     fields = '__all__'
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)    
 
-    # def form_valid(self, form):
-    #     form.instance.user = self.request.user
-    #     return super().form_valid(form)    
-
+1
 class JockeyCreate(CreateView):
     model = Jockey
     fields = '__all__'
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)    
+
+
+class HorseUpdate(UpdateView):
+    model = Horse
+    fields = ['age', 'description', 'starts', 'trainer', 'sire', 'dam']
+
+class HorseDelete(DeleteView):  
+    model = Horse
+    success_url = '/horse/'
+
 
 def signup(request):
   error_message = ''
