@@ -35,6 +35,23 @@ RACE_GRADES = [
 #         return reverse('detail', kwargs={'race_id' : self.id})
 
 
+
+class Jockey(models.Model):
+    name = models.CharField(max_length=150)
+    starts = models.IntegerField()
+    age = models.IntegerField()
+    
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('jockeys_detail', kwargs={'pk': self.id})
+
+    def most_recent_run(self):
+        return self.outcome_set.filter(date=date.today()).count() >= len(RACE_OUTCOMES)      
+
+  
+
 class Horse(models.Model):
     name = models.CharField(max_length=150)
     age = models.IntegerField()
@@ -43,17 +60,35 @@ class Horse(models.Model):
     dam = models.CharField(max_length=150)
     description = models.TextField(max_length=250)
     trainer = models.CharField(max_length=150)
-    outcomes = models.CharField(max_length=1, choices=RACE_OUTCOMES)
-
-    
+    jockeys = models.ManyToManyField(Jockey)
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'horse_id' : self.id})
+
+    def most_recent_run(self):
+        return self.outcome_set.filter(date=date.today()).count() >= len(RACE_OUTCOMES)   
     
-class Jockey(models.Model):
-    name = models.CharField(max_length=150)
-  
+
+class Outcome(models.Model):
+    date = models.DateField('Most Recent Race')
+    outcome = models.CharField(
+        max_length=1,
+        choices=RACE_OUTCOMES,
+        default=RACE_OUTCOMES[0][0],
+    )
+
+    horse = models.ForeignKey(Horse, on_delete=models.CASCADE)
+    jockey = models.ForeignKey(Jockey, on_delete=models.CASCADE)
+
+    def __str__(self):
+    # Nice method for obtaining the friendly value of a Field.choice
+        return f"{self.get_outcome_display()} on {self.date}"
+      # change the default sort
+    class Meta:
+        ordering = ['-date']
+
+
    
