@@ -4,7 +4,7 @@
 <h1>Jockeys on your Roster</h1>
 
 {% for jockey in jockey_list %}
-  <a href="{% url 'jockey_detail' jockey.id %}">
+  <a href="{% url 'jockeys_detail' jockey.id %}">
     <div>
         <div>
             <span>{{ jockey.name }}</span>

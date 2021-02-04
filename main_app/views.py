@@ -66,7 +66,7 @@ class JockeyCreate(CreateView):
         return super().form_valid(form)    
 
 class JockeyUpdate(UpdateView):
-    model = Horse
+    model = Jockey
     fields = ['age', 'bio', 'starts']
 
 

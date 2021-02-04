@@ -4,7 +4,7 @@
 <h1>Horses in your Stable</h1>
 
 {% for horse in horse_list %}
-  <a href="{% url 'horse_detail' horse.id %}">
+  <a href="{% url 'horses_detail' horse.id %}">
     <div>
         <div>
             <span>{{ horse.name }}</span>
