@@ -3,15 +3,18 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
-from .models import Horse, Jockey, Outcome
+from .models import Horse, Jockey, Outcome, Profile
 from .forms import OutcomeForm
 
 # Create your views here.
 
 def home(request):
     return render(request, 'home.html')
-   
 
+class ProfileUpdate(UpdateView):
+    model = Profile
+    fields = ['username', 'password', 'firstname', 'lastname']  
+   
 class HorseList(ListView):
     model = Horse
 

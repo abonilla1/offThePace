@@ -96,5 +96,11 @@ class Outcome(models.Model):
     class Meta:
         ordering = ['-date']
 
+class Profile(models.Model):
+    profile = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'profile_id' : self.id})
+  
 
    
