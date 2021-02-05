@@ -79,7 +79,6 @@ class Outcome(models.Model):
     )
 
     horse = models.ForeignKey(Horse, on_delete=models.CASCADE)
-    jockey = models.ForeignKey(Jockey, on_delete=models.CASCADE)
 
     def __str__(self):
     # Nice method for obtaining the friendly value of a Field.choice
