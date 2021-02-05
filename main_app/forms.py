@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class OutcomeForm(ModelForm):
     class Meta:
         model = Outcome
-        fields = ['date', 'outcome']
+        fields = ['name', 'date', 'outcome']
 
 # class ProfileForm(ModelForm):
 #     class Meta:

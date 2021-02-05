@@ -71,7 +71,7 @@ class Jockey(models.Model):
 
 
 class Outcome(models.Model):
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, default="Race Title")
     date = models.DateField("Date")
     outcome = models.CharField(
         max_length=1,
