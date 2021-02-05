@@ -18,7 +18,7 @@
 </container>
 <hr></hr>
 <div class="col s6">
-  <form action="{% url 'add_outcome' horse.id %}" method="post">
+  <form action="{% url 'add_horse_outcome' horse.id %}" method="post">
     {% csrf_token %}
     {{ outcome_form.as_p }}
     <input type="submit" class="btn" value="Add Race Result">
@@ -35,7 +35,7 @@
           <td>{{outcome.date}}</td>
           <td>{{outcome.get_outcome_display}}</td>
         </tr>
-        <form action="{% url 'add_feeding' cat.id %}" method="post">
+        <form action="{% url 'delete_horse_outcome' outcome.id %}" method="delete">
             {% csrf_token %}
             <input type="submit" class="btn" value="Delete Race">
         </form>

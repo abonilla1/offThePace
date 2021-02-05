@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<h1>Jockey Details</h1> 
+<hr></hr>
+<container id='horse-details-container'>
+  <div class="card w-50 border-secondary">
+    <h5 class="card-header bg-success bg-gradient">{{jockey.name}}</h5>
+    <div class="card-body">
+      <h5 class="card-title">Age: {{jockey.age}}</h5>
+      <p class="card-text">Number of Races: {{jockey.starts}}</p>
+      <p class="card-text">Bio: {{jockey.bio}}</p>
+      <a href="{% url 'jockeys_update' jockey.id %}" class="btn btn-outline-success">Update</a>
+    </div>
+  </div>
+</container>
+<hr></hr>
+<div class="col s6">
+  <form action="{% url 'add_jockey_experience' jockey.id %}" method="post">
+    {% csrf_token %}
+    {{ experience_form.as_p }}
+    <input type="submit" class="btn" value="Add Race Result">
+  </form>
+  <br>
+  <table class="striped">
+    <thead>
+      <tr><th>Race</th><th>Date</th><th>Result</th></tr>
+    </thead>
+    <tbody>
+      {% for experience in jockey.experience_set.all %}
+        <tr>
+         <td>{{experience.name}}</td>
+          <td>{{experience.date}}</td>
+          <td>{{experience.get_experience_display}}</td>
+        </tr>
+        <form action="{% url 'delete_jockey_experience' experience.id %}" method="delete">
+            {% csrf_token %}
+            <input type="submit" class="btn" value="Delete Race">
+        </form>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+
+{% endblock %}

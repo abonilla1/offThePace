@@ -82,16 +82,34 @@ class Outcome(models.Model):
     horse = models.ForeignKey(Horse, on_delete=models.CASCADE)
 
     def __str__(self):
-        # Nice method for obtaining the friendly value of a Field.choice
         return f"{self.get_outcome_display()} on {self.date}"
 
     def get_absolute_url(self):
-        return reverse("horses_detail", kwargs={"pk": self.id})    
+        return reverse("horses/detail", kwargs={"pk": self.id})    
+    class Meta:
+        ordering = ["-date"]
+
+class Experience(models.Model):
+    name = models.CharField(max_length=150, default="Race Title")
+    date = models.DateField("Date")
+    experience = models.CharField(
+        max_length=1,
+        choices=RACE_OUTCOMES,
+        default=RACE_OUTCOMES[0][0],
+    )
+
+    jockey = models.ForeignKey(Jockey, on_delete=models.CASCADE)
+
+    def __str__(self):
+        # Nice method for obtaining the friendly value of a Field.choice
+        return f"{self.get_experience_display()} on {self.date}"
+
+    def get_absolute_url(self):
+        return reverse("jockeys/detail.html", kwargs={"pk": self.id})    
 
     # change the default sort
     class Meta:
         ordering = ["-date"]
-
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
