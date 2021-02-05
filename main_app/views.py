@@ -15,9 +15,10 @@ def home(request):
 class HorseList(ListView):
     model = Horse
 
-class HorseDetail(DetailView):
-    model = Horse
+def horses_detail(request, horse_id):
+    horse = Horse.objects.get(id=horse_id)
     outcome_form = OutcomeForm()
+    return render(request, 'horses/detail.html', {'horse' : horse, 'outcome_form': outcome_form})
 
 def add_outcome(request, horse_id):
     form = OutcomeForm(request.POST)
@@ -25,7 +26,7 @@ def add_outcome(request, horse_id):
         new_outcome = form.save(commit=False)
         new_outcome.horse_id = horse_id
         new_outcome.save()
-    return redirect('detail', horse_id=horse_id)    
+    return redirect('horses_detail', horse_id=horse_id)    
 
 def assoc_horse(request, jockey_id, horse_id):
     Jockey.objects.get(id=jockey_id).horses.add(horse_id)

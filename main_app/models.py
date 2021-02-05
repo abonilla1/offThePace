@@ -9,6 +9,7 @@ RACE_OUTCOMES = [
     ("W", "Win"),
     ("P", "Place"),
     ("S", "Show"),
+    ("U", "Unplaced")
 ]
 
 RACE_GRADES = [
@@ -84,6 +85,9 @@ class Outcome(models.Model):
     def __str__(self):
         # Nice method for obtaining the friendly value of a Field.choice
         return f"{self.get_outcome_display()} on {self.date}"
+
+    def get_absolute_url(self):
+        return reverse("horses_detail", kwargs={"pk": self.id})    
 
     # change the default sort
     class Meta:
