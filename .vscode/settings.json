@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/Users/a_b/.pyenv/versions/offthepace/bin/python"
+    "python.pythonPath": "/Users/a_b/.pyenv/versions/offthepace/bin/python",
+    "python.formatting.provider": "black"
 }
