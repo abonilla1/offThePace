@@ -26,7 +26,7 @@ def add_outcome(request, horse_id):
         new_outcome = form.save(commit=False)
         new_outcome.horse_id = horse_id
         new_outcome.save()
-    return redirect('horses_detail', horse_id=horse_id)    
+    return redirect('detail', horse_id=horse_id)    
 
 def assoc_horse(request, jockey_id, horse_id):
     Jockey.objects.get(id=jockey_id).horses.add(horse_id)
@@ -41,7 +41,7 @@ class HorseCreate(CreateView):
 
 class HorseUpdate(UpdateView):
     model = Horse
-    fields = ['age', 'description', 'starts', 'trainer', 'sire', 'dam']
+    fields = ['name', 'age', 'description', 'starts', 'trainer', 'sire', 'dam']
 
 
 class JockeyList(ListView):

@@ -51,8 +51,6 @@ class Horse(models.Model):
     def get_absolute_url(self):
         return reverse("detail", kwargs={"horse_id": self.id})
 
-    def most_recent_run(self):
-        return self.outcome_set.filter(date=date.today()).count() >= len(RACE_OUTCOMES)
 
 
 class Jockey(models.Model):
@@ -73,7 +71,8 @@ class Jockey(models.Model):
 
 
 class Outcome(models.Model):
-    date = models.DateField("Most Recent Race")
+    name = models.CharField(max_length=150)
+    date = models.DateField("Date")
     outcome = models.CharField(
         max_length=1,
         choices=RACE_OUTCOMES,
