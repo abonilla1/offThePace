@@ -17,7 +17,5 @@ urlpatterns = [
     path("horses/create/", views.HorseCreate.as_view(), name="horses_create"),
     path("jockeys/create/", views.JockeyCreate.as_view(), name="jockeys_create"),
     path("horses/<int:pk>/update", views.HorseUpdate.as_view(), name="horses_update"),
-    path(
-        "jockeys/<int:pk>/update", views.JockeyUpdate.as_view(), name="jockeys_update"
-    ),
+    path("jockeys/<int:pk>/update", views.JockeyUpdate.as_view(), name="jockeys_update"),
 ]

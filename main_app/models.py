@@ -64,7 +64,7 @@ class Jockey(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("jockeys_detail", kwargs={"pk": self.id})
+        return reverse("jdetail", kwargs={"pk": self.id})
 
     def most_recent_run(self):
         return self.outcome_set.filter(date=date.today()).count() >= len(RACE_OUTCOMES)
