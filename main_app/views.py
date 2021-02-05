@@ -11,9 +11,6 @@ from .forms import OutcomeForm
 def home(request):
     return render(request, 'home.html')
 
-class ProfileUpdate(UpdateView):
-    model = Profile
-    fields = ['username', 'password', 'firstname', 'lastname']  
    
 class HorseList(ListView):
     model = Horse
@@ -29,8 +26,8 @@ def add_outcome(request, horse_id):
         new_outcome.save()
     return redirect('detail', horse_id=horse_id)    
 
-def assoc_jockey(request, horse_id, jockey_id):
-    Horse.objects.get(id=horse_id).jockeys.add(jockey_id)
+def assoc_horse(request, jockey_id, horse_id):
+    Jockey.objects.get(id=jockey_id).horses.add(horse_id)
     return redirect('detail', horse_id= horse_id)
 
 class HorseCreate(CreateView):

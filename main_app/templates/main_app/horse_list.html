@@ -2,16 +2,17 @@
 {% block content %}
 
 <h1>Horses in your Stable</h1>
+<hr>
 
 {% for horse in horse_list %}
-  <a href="{% url 'horses_detail' horse.id %}">
-    <div>
-        <div>
-            <span>{{ horse.name }}</span>
-            <p></p>
-        </div>
-    </div>
-  </a>
-{% endfor %}
+<div class="card w-50 border-secondary">
+  <h5 class="card-header bg-success bg-gradient">{{horse.name}}</h5>
+  <div class="card-body">
+    <h5 class="card-title">Age: {{horse.age}}</h5>
+    <p class="card-text">Number of Races: {{horse.starts}}</p>
+    <a href="{% url 'horses_detail' horse.id %}" class="btn btn-outline-success">See Details</a>
+  </div>
+</div>
 
+{% endfor %}    
 {% endblock %}

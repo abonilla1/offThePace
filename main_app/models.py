@@ -35,14 +35,30 @@ RACE_GRADES = [
 #         return reverse('detail', kwargs={'race_id' : self.id})
 
 
+class Horse(models.Model):
+    name = models.CharField(max_length=150)
+    age = models.IntegerField()
+    starts = models.IntegerField()
+    sire = models.CharField(max_length=150)
+    dam = models.CharField(max_length=150)
+    description = models.TextField(max_length=250)
+    trainer = models.CharField(max_length=150)
+    
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'horse_id' : self.id})
+
+    def most_recent_run(self):
+        return self.outcome_set.filter(date=date.today()).count() >= len(RACE_OUTCOMES)   
 
 class Jockey(models.Model):
     name = models.CharField(max_length=150)
     starts = models.IntegerField()
     age = models.IntegerField()
     bio = models.TextField(max_length=500, default='')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    user_watchlist = models.BooleanField(default=False)
+    horses = models.ManyToManyField(Horse)
     
     def __str__(self):
         return self.name
@@ -52,30 +68,6 @@ class Jockey(models.Model):
 
     def most_recent_run(self):
         return self.outcome_set.filter(date=date.today()).count() >= len(RACE_OUTCOMES)      
-
-  
-
-class Horse(models.Model):
-    name = models.CharField(max_length=150)
-    age = models.IntegerField()
-    starts = models.IntegerField()
-    sire = models.CharField(max_length=150)
-    dam = models.CharField(max_length=150)
-    description = models.TextField(max_length=250)
-    trainer = models.CharField(max_length=150)
-    jockeys = models.ManyToManyField(Jockey)
-    user_watchlist = models.BooleanField(default=False)
-    
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
-
-    def get_absolute_url(self):
-        return reverse('detail', kwargs={'horse_id' : self.id})
-
-    def most_recent_run(self):
-        return self.outcome_set.filter(date=date.today()).count() >= len(RACE_OUTCOMES)   
     
 
 class Outcome(models.Model):
@@ -97,10 +89,11 @@ class Outcome(models.Model):
         ordering = ['-date']
 
 class Profile(models.Model):
-    profile = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    bio = models.TextField(default='', blank=True)
 
-    def get_absolute_url(self):
-        return reverse('detail', kwargs={'profile_id' : self.id})
+    def __str__(self):
+        return f"{self.user.username} Profile"
   
 
    

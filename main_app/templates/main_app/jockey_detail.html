@@ -17,4 +17,23 @@
     </div>
   </div>
 </div>
+
+<h3>Horses</h3>  
+{% if jockey.horses.count %}
+  {% for horse in jockey.horses.all %}
+    <div class="card text-dark bg-light mb-3" style="max-width: 18rem;">
+      <div class="card-header bg-success bg-gradient"></div>
+        <div class="card-body">
+          <h5 class="card-title">{{horse.name }}</h5>
+          <div class="card-text">
+            <a href="{% url 'horses_detail' horse.id %}" class="btn btn-outline-success">See Details</a>
+          </div>
+        </div>
+      </div>
+  {% endfor %}
+{% else %}
+  <h5>No Horses Added</h5>
+{% endif %}
+
 {% endblock %}
+
