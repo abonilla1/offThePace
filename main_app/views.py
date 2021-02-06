@@ -36,7 +36,7 @@ def add_horse_outcome(request, horse_id):
 @login_required
 def delete_horse_outcome(request, outcome_id):
     Outcome.objects.filter(id = outcome_id).delete()
-    return redirect('/horses/')
+    return redirect('/horses/')   
 
 @login_required
 def assoc_horse(request, jockey_id, horse_id):
