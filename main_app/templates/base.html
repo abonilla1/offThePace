@@ -16,21 +16,36 @@
       type="text/css"
       href="{% static 'css/style.css' %}"
     />
-
     <title>Off the Pace</title>
   </head>
   <body>
     <header>
-      <nav>
-        <div>
-          <ul>
-            <li><a href="{% url 'horses_create' %}">Add a Horse</a></li>
-            <li><a href="{% url 'horses_index' %}">Horse List</a></li>
-            <li><a href="{% url 'jockeys_create' %}">Add a Jockey</a></li>
-            <li><a href="{% url 'jockeys_index' %}">Jockey List</a></li>
-            <li><a href="{% url 'logout' %}">Log Out</a></li>
-            <li><a href="{% url 'login' %}">Log In</a></li>
-            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+      <nav class="navbar navbar-expand-lg navbar-light bg-success">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <span class="navbar-brand mb-0 h3">OffThePace</span>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link active" href="/">Home</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="horseDropdown" role="button" data-bs-toggle="dropdown"  aria-expanded="false">
+              Horses
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="horseDropdown">
+                <li><a class="dropdown-item" href="{% url 'horses_create' %}">Add A Horse</a></li>
+                <li><a class="dropdown-item" href="{% url 'horses_index' %}">View Your List</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="jockeyDropdown" role="button" data-bs-toggle="dropdown"  aria-expanded="false">
+              Jockeys
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="jockeyDropdown">
+                <li><a class="dropdown-item" href="{% url 'jockeys_create' %}">Add A Jockey</a></li>
+                <li><a class="dropdown-item" href="{% url 'jockeys_index' %}">View Your List</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link active" href="{% url 'logout' %}">Log Out</a></li>
+            <li class="nav-item"><a class="nav-link active" href="{% url 'login' %}">Log In</a></li>
+            <li class="nav-item"><a class="nav-link active" href="{% url 'signup' %}">Sign Up</a></li>
           </ul>
         </div>
       </nav>
