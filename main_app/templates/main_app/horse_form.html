@@ -2,16 +2,16 @@
 
 {% block content %}
     {% if object %}
-        <h1>Edit <span class="teal-text">{{object.name}}</span></h1>
+        <h3 class="mx-5 mt-5">Edit <span class="teal-text">{{object.name}}</span></h3>
     {% else %}
-        <h1>Add Horse</h1>
+        <h3 class="mx-5 mt-5">Add Horse</h3>
     {% endif %}
     <form action="" method='post'>
         {% csrf_token %}
-        <table>
+        <table class="table mx-5 my-5">
             {{form.as_table}}
         </table>
-        <input type="submit" value="Submit" class="btn">
+        <input type="submit" value="Submit" class="btn btn-outline-success mx-5">
     </form>
 
 {% endblock %}
