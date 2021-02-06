@@ -10,8 +10,10 @@ urlpatterns = [
     path("delete_horse_outcome/<int:outcome_id>/", views.delete_horse_outcome, name="delete_horse_outcome"),
     path("jockeys/<int:jockey_id>/assoc_horse/<int:horse_id>/", views.assoc_horse, name="assoc_horse"
     ),
-    path("jockeys/", views.JockeyList.as_view(), name="jockeys_index"),
     path("jockeys/<int:jockey_id>/", views.jockeys_detail, name="jdetail"),
+    path("jockeys/<int:jockey_id>/unassoc_horse/<int:horse_id>/", views.unassoc_horse, name="unassoc_horse"),
+    path("jockeys/", views.JockeyList.as_view(), name="jockeys_index"),
+   
     path('jockeys/<int:jockey_id>/add_jockey_experience/', views.add_jockey_experience, name="add_jockey_experience"),
     path("delete_jockey_experience/<int:experience_id>/", views.delete_jockey_experience, name="delete_jockey_experience"),
     path("horses/create/", views.HorseCreate.as_view(), name="horses_create"),

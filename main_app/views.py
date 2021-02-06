@@ -43,6 +43,11 @@ def assoc_horse(request, jockey_id, horse_id):
     Jockey.objects.get(id=jockey_id).horses.add(horse_id)
     return redirect('jdetail', jockey_id=jockey_id)
 
+@login_required
+def unassoc_horse(request, jockey_id, horse_id):
+    Jockey.objects.get(id=jockey_id).horses.remove(horse_id)
+    return redirect('jdetail', jockey_id=jockey_id)    
+
 class HorseCreate(LoginRequiredMixin, CreateView):
     model = Horse
     fields = '__all__'
@@ -61,8 +66,9 @@ class JockeyList(LoginRequiredMixin, ListView):
 @login_required
 def jockeys_detail(request, jockey_id):
     jockey = Jockey.objects.get(id=jockey_id)
+    not_ridden = Horse.objects.exclude(id__in = jockey.horses.all().values_list('id'))
     experience_form=ExperienceForm()
-    return render(request, 'jockeys/jdetail.html', {'jockey' : jockey, 'experience_form': experience_form})
+    return render(request, 'jockeys/jdetail.html', {'jockey' : jockey, 'experience_form': experience_form, 'horses' : not_ridden})
 
 @login_required
 def add_jockey_experience(request, jockey_id):
