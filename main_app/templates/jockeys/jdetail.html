@@ -2,10 +2,10 @@
 {% block content %}
 
 
-<h1>Jockey Details</h1> 
+<h1 class="mx-5 my-5">Jockey Details</h1> 
 <hr></hr>
 <container id='horse-details-container'>
-  <div class="card w-50 border-secondary">
+  <div class="card w-50 mx-5 my-5 border-secondary">
     <h5 class="card-header bg-success bg-gradient">{{jockey.name}}</h5>
     <div class="card-body">
       <h5 class="card-title">Age: {{jockey.age}}</h5>
@@ -16,78 +16,84 @@
   </div>
 </container>
 <hr></hr>
-<div class="col s6">
+<div class="mx-5 my-5">
   <form action="{% url 'add_jockey_experience' jockey.id %}" method="post">
     {% csrf_token %}
     {{ experience_form.as_p }}
-    <input type="submit" class="btn" value="Add Race Result">
+    <input type="submit" class="btn btn-outline-success" value="Add Race Result">
   </form>
-  <br>
-  <table class="striped">
-    <thead>
-      <tr><th>Race</th><th>Date</th><th>Result</th></tr>
-    </thead>
-    <tbody>
-      {% for experience in jockey.experience_set.all %}
-        <tr>
-         <td>{{experience.name}}</td>
-          <td>{{experience.date}}</td>
-          <td>{{experience.get_experience_display}}</td>
-        </tr>
-        <form action="{% url 'delete_jockey_experience' experience.id %}" method="delete">
+</div>  
+
+<table class="table w-75 mx-5 my-5">
+  <thead>
+    <tr><th scope="col">Race</th><th scope="col">Date</th><th scope="col">Result</th></tr>
+  </thead>
+  <tbody>
+    {% for experience in jockey.experience_set.all %}
+      <tr>
+        <td scope="row">{{experience.name}}</td>
+        <td scope="row">{{experience.date}}</td>
+        <td scope="row">{{experience.get_experience_display}}</td>
+        <td scope="row">
+          <form action="{% url 'delete_jockey_experience' experience.id %}" method="delete">
             {% csrf_token %}
-            <input type="submit" class="btn" value="Delete Race">
-        </form>
+            <input type="submit" class="btn btn-outline-success" value="Delete Race">
+          </form>
+        </td>  
+      </tr>  
       {% endfor %}
     </tbody>
   </table>
 </div>
 </div>
+<hr></hr>
 
-<div class="row">
-  <div class="col s6">
-    <h3>{{ jockey.name }}'s Rides</h3>
-    {% if jockey.horses.count %}
-      {% for horse in jockey.horses.all %}
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">
-              <p> {{ horse.name }} <p>
-              <form action="{% url 'unassoc_horse' jockey.id horse.id %}" method="post">
-                {% csrf_token %}
-                <input type="submit" class="btn" value="Remove">
-              </form>
-            </span>
-          </div>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md">
+      <h3 class="mx-3 my-3">{{ jockey.name }}'s Rides</h3>
+        {% if jockey.horses.count %}
+          {% for horse in jockey.horses.all %}
+            <div class="card w-50 mx-2 my-3 ">
+              <div class="card-content mx-2 my-3">
+                <span class="card-title bg-success">
+                  <p> {{ horse.name }} <p>
+                  <form action="{% url 'unassoc_horse' jockey.id horse.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-outline-success" value="Remove">
+                  </form>
+                </span>
+              </div>
+            </div>        
       {% endfor %}
-    {% else %}
-      <h5>No Horses Added!</h5>
+    {% else %}  
+      <h5 class="mx-3 my-3">No Horses Added!</h5>
     {% endif %}
+    </div>
   </div>
   <!-- Available toys will come after this line -->
-  <div class="col s6">
-    <h3>Available Rides</h3>
-    {% if horses.count %}
-      {% for horse in horses.all %}
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">
-              {{horse.name }}
-            </span>
-          </div>
-          <div class="card-action">
-            <form action="{% url 'assoc_horse' jockey.id horse.id %}" method="post">
-              {% csrf_token %}
-              <button type="submit" class="btn">Add</button>
-            </form>
-          </div>
-        </div>
-      {% endfor %}
-    {% else %}
-      <h5>{{jockey.name}} has ridden all the horses in the database!</h5>
-    {% endif %}
-  </div>
+    <div class="col-md">
+      <h3 class="mx-3 my-3">Available Rides</h3>
+        {% if horses.count %}
+          {% for horse in horses.all %}
+            <div class="card w-50 mx-2 my-3 ">
+              <div class="card-content mx-2 my-3">
+                <span class="card-title bg-success">
+                  <p> {{ horse.name }} <p>
+                  <form action="{% url 'assoc_horse' jockey.id horse.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-success">Add</button>
+                  </form>
+                </span>
+              </div>
+            </div> 
+          {% endfor %}
+        {% else %}
+          <h5 class="mx-3 my-3">{{jockey.name}} has ridden all the horses in the database!</h5>
+        {% endif %}
+      </div>
+    </div>
+
 </div>
 
 {% endblock %}
