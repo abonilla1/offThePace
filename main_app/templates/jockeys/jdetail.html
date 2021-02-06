@@ -16,6 +16,7 @@
   </div>
 </container>
 <hr></hr>
+<h5 class="mx-5 mt-5">Race History</h5> 
 <div class="mx-5 my-5">
   <form action="{% url 'add_jockey_experience' jockey.id %}" method="post">
     {% csrf_token %}
@@ -24,6 +25,7 @@
   </form>
 </div>  
 
+<h5 class="mx-5 mt-5">Results</h5> 
 <table class="table w-75 mx-5 my-5">
   <thead>
     <tr><th scope="col">Race</th><th scope="col">Date</th><th scope="col">Result</th></tr>
