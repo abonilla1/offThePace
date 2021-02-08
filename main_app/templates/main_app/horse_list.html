@@ -5,9 +5,9 @@
 <hr>
 
 {% for horse in horse_list %}
-<div class="card w-50 border-secondary mx-5 my-5">
+<div class="card w-50 border-secondary mx-5 my-5 shadow">
   <h5 class="card-header bg-success bg-gradient">{{horse.name}}</h5>
-  <div class="card-body">
+  <div class="card-body rounded" style="background-color: #f6f6f6">
     <h5 class="card-title">Age: {{horse.age}}</h5>
     <p class="card-text">Number of Races: {{horse.starts}}</p>
     <a href="{% url 'detail' horse.id %}" class="btn btn-outline-success">See Details</a>

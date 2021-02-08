@@ -2,12 +2,12 @@
 {% block content %}
 
 
-<h1 class="mx-5 my-5">Jockey Details</h1> 
+<h1 class="mx-5 my-5" >Jockey Details</h1> 
 <hr></hr>
 <container id='horse-details-container'>
-  <div class="card w-50 mx-5 my-5 border-secondary">
+  <div class="card w-50 mx-5 my-5 border-secondary shadow">
     <h5 class="card-header bg-success bg-gradient">{{jockey.name}}</h5>
-    <div class="card-body">
+    <div class="card-body " style="background-color: #f6f6f6">
       <h5 class="card-title">Age: {{jockey.age}}</h5>
       <p class="card-text">Number of Races: {{jockey.starts}}</p>
       <p class="card-text">Bio: {{jockey.bio}}</p>
@@ -56,8 +56,8 @@
       <h3 class="mx-3 my-3">{{ jockey.name }}'s Rides</h3>
         {% if jockey.horses.count %}
           {% for horse in jockey.horses.all %}
-            <div class="card w-50 mx-2 my-3 ">
-              <div class="card-content mx-2 my-3">
+            <div class="card w-50 mx-2 my-3 shadow " style="background-color: #f6f6f6">
+              <div class="card-content mx-2 my-3" >
                 <span class="card-title bg-success">
                   <p> {{ horse.name }} <p>
                   <form action="{% url 'unassoc_horse' jockey.id horse.id %}" method="post">
@@ -78,7 +78,7 @@
       <h3 class="mx-3 my-3">Available Rides</h3>
         {% if horses.count %}
           {% for horse in horses.all %}
-            <div class="card w-50 mx-2 my-3 ">
+            <div class="card w-50 mx-2 my-3 shadow " style="background-color: #f6f6f6">
               <div class="card-content mx-2 my-3">
                 <span class="card-title bg-success">
                   <p> {{ horse.name }} <p>
