@@ -2,9 +2,9 @@
 
 {% block content %}
     {% if object %}
-        <h3 class="mx-5 mt-5">Edit <span class="teal-text">{{object.name}}</span></h3>
+        <h3 class="mx-5 mt-5" style="color: #03540d;">Edit <span class="teal-text">{{object.name}}</span></h3>
     {% else %}
-        <h3 class="mx-5 mt-5">Add Jockey</h3>
+        <h3 class="mx-5 mt-5" style="color: #03540d;">Add Jockey</h3>
     {% endif %}
     <form action="" method='post'>
         {% csrf_token %}
