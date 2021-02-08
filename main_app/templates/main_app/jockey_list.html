@@ -4,13 +4,14 @@
 <h1 class= "mx-5 my-5">Jockeys on your Roster</h1>
 
 {% for jockey in jockey_list %}
-  <a href="{% url 'jdetail' jockey.id %}">
-    <div class="card mx-5 my-5 w-50">
-      <div class="card-header bg-success text-white">{{jockey.name}}</div>
-        <div class="card-body">
-          <p class="card-title">Starts: {{jockey.starts}}</>
-          <p class="card-text">Click for Details</p>
-        </div>
+  <div class="card mx-5 my-5 w-50">
+    <div class="card-header bg-success text-white">{{jockey.name}}</div>
+      <div class="card-body">
+        <p class="card-title">Starts: {{jockey.starts}}</>
+        <a href="{% url 'jdetail' jockey.id %}" class="btn btn-outline-success">Click for Details</a>
+      </div>
+    </div>
+  </div>    
 {% endfor %}
 
 {% endblock %}
