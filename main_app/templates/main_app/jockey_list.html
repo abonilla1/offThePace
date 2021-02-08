@@ -6,7 +6,7 @@
 
 {% for jockey in jockey_list %}
   <div class="card mx-5 my-5 w-50 shadow border-secondary rounded">
-    <div class="card-header bg-success text-white">{{jockey.name}}</div>
+    <div class="card-header bg-success">{{jockey.name}}</div>
       <div class="card-body" style="background-color: #f6f6f6">
         <p class="card-title">Starts: {{jockey.starts}}<p/>
         <a href="{% url 'jdetail' jockey.id %}" class="btn btn-outline-success">Click for Details</a>
