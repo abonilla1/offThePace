@@ -44,6 +44,7 @@ class Horse(models.Model):
     dam = models.CharField(max_length=150)
     description = models.TextField(max_length=250)
     trainer = models.CharField(max_length=150)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -59,6 +60,7 @@ class Jockey(models.Model):
     age = models.IntegerField()
     bio = models.TextField(max_length=500, default="")
     horses = models.ManyToManyField(Horse)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

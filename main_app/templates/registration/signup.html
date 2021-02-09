@@ -1,11 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<form method="post" action="{% url 'login' %}" class="table mx-5 my-5">
+<form method="post" action="{% url 'signup' %}" class="table mx-5 my-5">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" class="btn btn-outline-success" value="Signup!">
-    <input type="hidden" name="next" value="{{ next }}">
 </form>
 
 {% endblock %}
