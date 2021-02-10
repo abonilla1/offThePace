@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h1>Delete Jockey</h1>
+  <h1 class="mx-5 my-5">Delete Jockey</h1>
+  <hr></hr>
 
-  <h4>Are you sure you want to delete {{ object.name }}</h4>
+  <h4>Are you sure you want to delete {{ object.name }}?</h4>
 
-  <form action="" method="POST">
+  <form action="" method="POST" class="mx-5 my-5">
     {% csrf_token %}
     <input type="submit" value="Yes - Delete!" class="btn btn-outline-danger">
-    <a href="{% url 'jdetail' object.id %}">Cancel</a>
+    <a href="{% url 'jdetail' object.id %}" class="btn btn-outline-secondary">Cancel</a>
   </form>
 {% endblock %}
