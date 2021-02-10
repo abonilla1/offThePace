@@ -7,10 +7,12 @@ urlpatterns = [
     path("horses/", views.HorseList.as_view(), name="horses_index"),
     path("horses/<int:horse_id>/", views.horses_detail, name="detail"),
     path("horses/<int:horse_id>/add_horse_outcome/", views.add_horse_outcome, name="add_horse_outcome"),
+    path("horses/<int:pk>/delete", views.HorseDelete.as_view(), name="horses_delete"),
     path("delete_horse_outcome/<int:outcome_id>/", views.delete_horse_outcome, name="delete_horse_outcome"),
     path("jockeys/<int:jockey_id>/assoc_horse/<int:horse_id>/", views.assoc_horse, name="assoc_horse"
     ),
     path("jockeys/<int:jockey_id>/", views.jockeys_detail, name="jdetail"),
+    path("jockeys/<int:pk>/delete", views.JockeyDelete.as_view(), name="jockeys_delete"),
     path("jockeys/<int:jockey_id>/unassoc_horse/<int:horse_id>/", views.unassoc_horse, name="unassoc_horse"),
     path("jockeys/", views.JockeyList.as_view(), name="jockeys_index"),
    

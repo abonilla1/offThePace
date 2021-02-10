@@ -61,6 +61,9 @@ class HorseUpdate(LoginRequiredMixin, UpdateView):
     model = Horse
     fields = ['name', 'age', 'description', 'starts', 'trainer', 'sire', 'dam']
 
+class HorseDelete(LoginRequiredMixin, DeleteView):
+    model = Horse
+    success_url = '/horses/'
 
 class JockeyList(LoginRequiredMixin, ListView):
     model = Jockey
@@ -100,6 +103,9 @@ class JockeyUpdate(LoginRequiredMixin, UpdateView):
     model = Jockey
     fields = ['age', 'bio', 'starts']
 
+class JockeyDelete(LoginRequiredMixin, DeleteView):
+    model = Jockey
+    success_url = '/jockeys/'
 
 def signup(request):
   error_message = ''

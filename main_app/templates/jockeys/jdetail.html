@@ -12,6 +12,7 @@
       <p class="card-text">Number of Races: {{jockey.starts}}</p>
       <p class="card-text">Bio: {{jockey.bio}}</p>
       <a href="{% url 'jockeys_update' jockey.id %}" class="btn btn-outline-success">Update</a>
+      <a href="{% url 'jockeys_delete' jockey.id %}" class="btn btn-outline-success">Delete</a>
     </div>
   </div>
 </container>
