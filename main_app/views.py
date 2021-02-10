@@ -16,7 +16,9 @@ def home(request):
    
 class HorseList(LoginRequiredMixin, ListView):
     model = Horse
-
+    
+    def get_queryset(self):
+        return Horse.objects.filter(user=self.request.user)
 
 @login_required
 def horses_detail(request, horse_id):
@@ -50,7 +52,7 @@ def unassoc_horse(request, jockey_id, horse_id):
 
 class HorseCreate(LoginRequiredMixin, CreateView):
     model = Horse
-    fields = '__all__'
+    fields = ['name', 'age', 'description', 'starts', 'trainer', 'sire', 'dam']
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)    
@@ -62,6 +64,9 @@ class HorseUpdate(LoginRequiredMixin, UpdateView):
 
 class JockeyList(LoginRequiredMixin, ListView):
     model = Jockey
+    
+    def get_queryset(self):
+        return Jockey.objects.filter(user=self.request.user)
 
 @login_required
 def jockeys_detail(request, jockey_id):
@@ -86,7 +91,7 @@ def delete_jockey_experience(request, experience_id):
 
 class JockeyCreate(LoginRequiredMixin, CreateView):
     model = Jockey
-    fields = '__all__'
+    fields = ['age', 'name', 'bio', 'starts']
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)    
